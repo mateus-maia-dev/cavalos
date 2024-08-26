@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "arabe",
+            "program": "${workspaceFolder}/index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "paint",
+        //     "program": "${workspaceFolder}/cavalo-paint-registros.js",
+        //     "skipFiles": [
+        //         "<node_internals>/**"
+        //     ]
+        // }
+    ]
+}

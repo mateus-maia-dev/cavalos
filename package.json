@@ -1,0 +1,19 @@
+{
+  "name": "teste_cavalos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cavalo-campolina-registros.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.30.1",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "puppeteer": "14.1.2",
+    "sequelize": "^6.37.3",
+    "yargs": "^17.7.2"
+  }
+}
