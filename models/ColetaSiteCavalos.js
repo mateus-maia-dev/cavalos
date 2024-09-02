@@ -1,8 +1,8 @@
-const ColetaSite = require("./ColetaSite");
+const { logger } = require("sequelize/lib/utils/logger");
 
 // Definir mapeamento ORM
 module.exports = (sequelize, DataTypes) => {
-    const PropriedadeCavalo = sequelize.define('PropriedadeCavalo', {
+    const ColetaSiteCavalos = sequelize.define('ColetaSiteCavalos', {
         csc_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'ColetaSite',
+                model: 'TbBasesCavalos',
                 key: 'cst_id'
             },
         },
@@ -36,19 +36,20 @@ module.exports = (sequelize, DataTypes) => {
             default: true
         }
     }, {
-        tableName: 'coleta_site_cavalo',
+        tableName: 'coleta_site_cavalos',
         timestamps: false,
         primaryKey: false,
+        logging: false
     });
 
-    PropriedadeCavalo.associate = function (models) {
-        PropriedadeCavalo.belongsTo(models.ColetaSite, {
+    ColetaSiteCavalos.associate = function (models) {
+        ColetaSiteCavalos.belongsTo(models.TbBasesCavalos, {
             foreignKey: 'csc_coleta_site_id',
             targetKey: 'cst_id',
-            as: 'coletaSite'
+            as: 'coletaSiteCavalos'
         });
     };
 
-    return PropriedadeCavalo;
+    return ColetaSiteCavalos;
 };
 

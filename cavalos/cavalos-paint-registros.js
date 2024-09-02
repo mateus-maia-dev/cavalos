@@ -8,12 +8,12 @@ const { PropriedadeCavalo } = require('../models');
 const mathUtil = require('../utils/math-util')
 // const { createClient } = require('redis')
 const moment = require('moment');
-const { createPropriedadeCavaloRecord } = require('../utils/cavalos-services');
+const { createPropriedadeCavaloRecord } = require('../services/cavalos-services');
 // const orquestradorApi = require('../../service/orquestrador-api-service')
 // const GetRegistrosCavalos =
 //     require('../../service/registrosCavalos').GetRegistrosCavalos
 
-const SIGLA = 'CAVALOS-ARABE-REGISTROS'
+const SIGLA = 'CAVALOS-PAINT-REGISTROS'
 // exports.sigla = SIGLA
 let logUltimaLetraPesquisada = ''
 // Parametros
@@ -30,7 +30,7 @@ const URL = 'https://expo.abcca.com.br/studbook/abcca_stud_pesq.asp'
  */
 
 
-exports.startRobo = async () => {
+exports.runRobo = async () => {
     let clientRedis = null
 
     const args = [
@@ -73,7 +73,7 @@ exports.startRobo = async () => {
         const nomesCavalos = []
 
         try {
-            await coleta(page, dadosRedis, clientRedis, nomesCavalos)
+            await coleta(page, dadosRedis, clientRedis, nomesCavalos, URL)
         } catch (error) {
             console.error("Ocorreu um erro: ", error.message);
 
@@ -103,7 +103,7 @@ exports.startRobo = async () => {
         logger.error(error)
         logger.error(logUltimaLetraPesquisada, 'logUltimaLetraPesquisada')
         // chama a coleta 3 vezes
-
+        throw error;
     } finally {
         if (clientRedis != null) {
             // desconectar o client do Redis
@@ -112,7 +112,7 @@ exports.startRobo = async () => {
     }
 }
 
-async function coleta(page, dadosRedis, clientRedis, nomesCavalos) {
+async function coleta(page, dadosRedis, clientRedis, nomesCavalos, URL) {
     // Initialize an empty array to hold the combinations
     // const combinations = arrayCombinacoes()
 
@@ -439,4 +439,4 @@ function arrayCombinacoes() {
     }
 
     return combinations
-}
+};
